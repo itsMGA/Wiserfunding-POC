@@ -19,9 +19,10 @@ class DashboardPage_Facade:
         self.dasboard_page.page.click(self.dasboard_page.searched_company_li_result_xpath)
         self.dasboard_page.generate_report_button.click()
         self.dasboard_page.go_to_report_btn.click()
-
-        #replace with proper wait
-        time.sleep(4)
+        #Wait until page loads, tied to header loading time
+        self.dasboard_page.page.wait_for_selector("""//div[@data-playwright-id="reports.main.header"]//p[text()='Wiserfunding Risk Assessment Report']""")
+        #redundant sleep, could be removed if page proves proper client side rendering
+        time.sleep(2)
         return self
 
     def set_report_id(self):

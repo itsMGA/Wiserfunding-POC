@@ -28,7 +28,6 @@ class Report_api_Facade():
         report_api_url = self.environemnt.report_api
         report_api_url += f"/{report_id}"
         report_rsp = requests.get(url=report_api_url, headers=headers)
-        # print(json.dumps(report_rsp.json(), indent=3))
-        # print(report_rsp.json()['details']['nace_name'])
-        assert report_rsp.status_code == 200, f"Failed to request access report!\nStatus code {token_rsp.status_code} != 200"
+
+        assert report_rsp.status_code == 200, f"Failed to request access report!\nStatus code {report_rsp.status_code} != 200"
         return report_rsp.json()
