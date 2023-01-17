@@ -8,12 +8,13 @@ from apps.utils import Ultilities
 import pytest
 
 
-@pytest.fixture(scope="session")
-def page():
+@pytest.fixture()
+def page(environmentConfigs):
     pw = sync_playwright().start()
     br = pw.chromium.launch(headless=False)
     page = br.new_page()
-    page.goto("https://alpha.wiserfunding.com/")
+    print(environmentConfigs)
+    page.goto(environmentConfigs.wiserfunding_url)
     yield page
     page.close()
     br.close()
